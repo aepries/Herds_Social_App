@@ -8,4 +8,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="inbox_string">inbox</string>
+    <string name="starred_string">starred</string>
+    <string name="sent_mail_string">sent</string>
+    <string name="draft_string">draft</string>
+    <string name="all_mail_string">all mail</string>
+    <string name="trash_string">trash</string>
+    <string name="spam_string">spam</string>
+    <string name="closeDrawer">Navigation View</string>
+    <string name="openDrawer">Navigation View Closed</string>
 </resources>
