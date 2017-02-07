@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Herds_Social_App</string>
+    <string name="app_name">Herds: UNC</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -8,10 +8,10 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="inbox_string">inbox</string>
-    <string name="starred_string">starred</string>
-    <string name="sent_mail_string">sent</string>
-    <string name="draft_string">draft</string>
+    <string name="events_string">Events</string>
+    <string name="groups_string">Groups</string>
+    <string name="categories_string">Categories</string>
+    <string name="profile_string">Profile</string>
     <string name="all_mail_string">all mail</string>
     <string name="trash_string">trash</string>
     <string name="spam_string">spam</string>
