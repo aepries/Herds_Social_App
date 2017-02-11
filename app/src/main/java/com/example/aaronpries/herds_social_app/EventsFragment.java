@@ -30,8 +30,32 @@ import com.squareup.picasso.Picasso;
  */
 public class EventsFragment extends Fragment {
 
+    public static class EventViewHolder extends RecyclerView.ViewHolder{
+        public TextView eventTitle;
+        public ImageView eventImage;
 
-//VARIABLES
+        public EventViewHolder(View v){
+            super(v);
+            eventTitle = (TextView)itemView.findViewById(R.id.title);
+            eventImage = (ImageView)itemView.findViewById(R.id.image);
+        }
+    }
+
+    private DatabaseReference mFirebaseDatabaseReference;
+    private FirebaseRecyclerAdapter<ModelClass, EventViewHolder> mFirebaseAdapter;
+    private RecyclerView mEventRecyclerView;
+    private LinearLayoutManager mLinearLayoutManager;
+    private static String TAG = "EventsFragment";
+    public static final String DATA = "Data";
+
+
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//
+//    }
+
+    //VARIABLES
     private RecyclerView mBlogList;
     private FirebaseDatabase database;
     private DatabaseReference ref;
@@ -41,11 +65,7 @@ public class EventsFragment extends Fragment {
         // Required empty public constructor
     }
 
-   //DELETE THIS IF IT DOESN'T POPULATE
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+
 
 
 
@@ -53,14 +73,33 @@ public class EventsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        View v = inflater.inflate(R.layout.events_fragment,container,false);
         final View v = inflater.inflate(R.layout.events_fragment,container,false);
-        //set up Recyclerv]View
-//        RecyclerView mBlogList = (RecyclerView) v.findViewById(R.id.blog_list);
-//        //Connect to Firebase
-//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        v.setTag(TAG);
+//RV
+        mEventRecyclerView = (RecyclerView)v.findViewById(R.id.events_list);
+        //LLM
+        mLinearLayoutManager = new LinearLayoutManager(getActivity());
+        mEventRecyclerView.setLayoutManager(mLinearLayoutManager);
+        //DB
+        mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        mFirebaseAdapter = new FirebaseRecyclerAdapter<ModelClass, EventViewHolder>(
+                ModelClass.class,
+                R.layout.card_view_layout,
+                EventViewHolder.class,
+                mFirebaseDatabaseReference)
+        {
+            @Override
+            protected void populateViewHolder(EventViewHolder viewHolder, ModelClass model, int position) {
+                viewHolder.eventTitle.setText(model.getTitle());
+                //viewHolder.eventImag
+            }
+        };
 
-        //Custom subclass for FireBaseAdapter
+        mEventRecyclerView.setLayoutManager(mLinearLayoutManager);
+        mEventRecyclerView.setAdapter(mFirebaseAdapter);
+
+
+
 
 
         return v;

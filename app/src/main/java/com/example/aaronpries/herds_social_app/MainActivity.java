@@ -2,6 +2,7 @@ package com.example.aaronpries.herds_social_app;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -10,6 +11,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,8 +19,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
+
+import com.firebase.ui.database.FirebaseListAdapter;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,11 +36,20 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private NavigationView navigationView;
     private DrawerLayout drawerLayout;
+    private static final String TAG = "MainActivity";
+    private FirebaseDatabase database;
+    private RecyclerView mBlogList;
+    private DatabaseReference myRef;
+    private DatabaseReference muhRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+
         HomePage();
 
         // Initializing Toolbar and setting it as the actionbar
@@ -158,4 +177,10 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frame,fragment);
         fragmentTransaction.commit();
     }
+
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        firebaseRecyclerAdapter.cleanup();
+//    }
 }
