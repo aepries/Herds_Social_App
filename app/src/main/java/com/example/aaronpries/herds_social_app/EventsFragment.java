@@ -33,11 +33,18 @@ public class EventsFragment extends Fragment {
     public static class EventViewHolder extends RecyclerView.ViewHolder{
         public TextView eventTitle;
         public ImageView eventImage;
+        View mView;
 
         public EventViewHolder(View v){
             super(v);
-            eventTitle = (TextView)itemView.findViewById(R.id.title);
-            eventImage = (ImageView)itemView.findViewById(R.id.image);
+            mView = v;
+            eventTitle = (TextView)mView.findViewById(R.id.title);
+            eventImage = (ImageView)mView.findViewById(R.id.image);
+        }
+
+        public void setTitle(String title){
+            TextView post_title = (TextView)mView.findViewById(R.id.title);
+            post_title.setText(title);
         }
     }
 
@@ -61,9 +68,11 @@ public class EventsFragment extends Fragment {
     private DatabaseReference ref;
 
 
-    public EventsFragment() {
-        // Required empty public constructor
-    }
+//    public EventsFragment() {
+//        // Required empty public constructor
+//    }
+
+
 
 
 
@@ -84,28 +93,26 @@ public class EventsFragment extends Fragment {
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
         mFirebaseAdapter = new FirebaseRecyclerAdapter<ModelClass, EventViewHolder>(
                 ModelClass.class,
-                R.layout.card_view_layout,
+                R.layout.design_row,
                 EventViewHolder.class,
-                mFirebaseDatabaseReference)
+                mFirebaseDatabaseReference.child(DATA))
         {
             @Override
             protected void populateViewHolder(EventViewHolder viewHolder, ModelClass model, int position) {
                 viewHolder.eventTitle.setText(model.getTitle());
                 //viewHolder.eventImag
             }
+
+
         };
 
         mEventRecyclerView.setLayoutManager(mLinearLayoutManager);
         mEventRecyclerView.setAdapter(mFirebaseAdapter);
 
-
-
-
-
         return v;
-
-
     }
+
+
 
 
 
