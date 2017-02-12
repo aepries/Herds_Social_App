@@ -100,7 +100,10 @@ public class EventsFragment extends Fragment {
             @Override
             protected void populateViewHolder(EventViewHolder viewHolder, ModelClass model, int position) {
                 viewHolder.eventTitle.setText(model.getTitle());
-                //viewHolder.eventImag
+                Picasso.with(getActivity().getApplicationContext())
+                        .load(model.getImage())
+                        .fit()
+                        .into(viewHolder.eventImage);
             }
 
 
