@@ -7,8 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private String[] mDataset;
+    ArrayList<ModelClass> modelClass;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -24,19 +27,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
+// Provide a suitable constructor (depends on the kind of dataset)
     public MyAdapter(String[] myDataset) {
         mDataset = myDataset;
     }
 
-    // Create new views (invoked by the layout manager)
+
+
+
+// Create new views (invoked by the layout manager)
     @Override
     public MyAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
                                                      int viewType) {
-        // create a new view
+// create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card_item, parent, false);
-        // set the view's size, margins, paddings and layout parameters
+
+
+// set the view's size, margins, paddings and layout parameters
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
     }
@@ -50,4 +58,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public int getItemCount() {
         return mDataset.length;
     }
+
+
 }
