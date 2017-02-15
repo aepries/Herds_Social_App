@@ -1,0 +1,44 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.aaronpries.herds_social_app.ExpandEventsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:id="@+id/image"
+            android:background="@color/orange"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:layout_below="@+id/image"
+            android:text="TITLE GOES HERE"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25dp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bio"
+            android:paddingLeft="20dp"
+            android:paddingTop="20dp"
+            android:layout_below="@+id/title"
+            android:text="BIO GOES HERE FOR AS LONG AS NEEDED"
+            android:textColor="@color/colorAccent"
+            />
+
+
+    </RelativeLayout>
+
+</FrameLayout>
