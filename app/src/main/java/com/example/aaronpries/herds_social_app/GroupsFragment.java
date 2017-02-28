@@ -41,25 +41,31 @@ public class GroupsFragment extends Fragment {
             mView = v;
             groupTitle = (TextView)mView.findViewById(R.id.name);
             groupImage = (ImageView)mView.findViewById(R.id.image);
-        }
-
-        public TextView getgroupTitle() {
-            return groupTitle;
-        }
-
-        public void setgroupTitle(TextView groupTitle) {
-            this.groupTitle = groupTitle;
+            groupShortBio = (TextView)mView.findViewById(R.id.shortbio);
         }
 
 //        public TextView getgroupTitle() {
 //            return groupTitle;
 //        }
+//
+//        public void setgroupTitle(TextView groupTitle) {
+//            this.groupTitle = groupTitle;
+//        }
 
-        public void setTitle(String title){
-            TextView group_name = (TextView)mView.findViewById(R.id.title);
-            group_name.setText(title);
+//        public TextView getgroupTitle() {
+//            return groupTitle;
+//        }
 
-        }
+//        public void setTitle(String title){
+//            TextView group_name = (TextView)mView.findViewById(R.id.title);
+//            group_name.setText(title);
+//
+//        }
+//
+//        public setShortBio(String shortbio){
+//            TextView group_name = (TextView)mView.findViewById(R.id.shortbio);
+//            group_name.setText(shortbio);
+//        }
     }
 
     private DatabaseReference mFirebaseDatabaseReference;
@@ -113,6 +119,7 @@ public class GroupsFragment extends Fragment {
 
 
                 viewHolder.groupTitle.setText(model.getName());
+                viewHolder.groupShortBio.setText(model.getShortBio());
                 Picasso.with(getActivity().getApplicationContext())
                         .load(model.getImage())
                         .fit()
@@ -136,12 +143,12 @@ public class GroupsFragment extends Fragment {
                             @Override
                             public void onDataChange(DataSnapshot snapshot) {
                                 System.out.println(snapshot.getValue());
-                                group_info = snapshot.child("bio").getValue().toString();
+                                group_info = snapshot.child("shortbio").getValue().toString();
                                 group_name = snapshot.child("name").getValue().toString();
                                 group_image = snapshot.child("image").getValue().toString();
 
                                 Bundle bundle = new Bundle();
-                                bundle.putString("bio", group_info);
+                                bundle.putString("shortbio", group_info);
                                 bundle.putString("name", group_name);
                                 bundle.putString("image", group_image);
 
