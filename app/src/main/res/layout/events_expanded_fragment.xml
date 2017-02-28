@@ -12,10 +12,10 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/titlePost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/image"
+            android:layout_below="@+id/imagePost"
             android:textSize="30dp"
             android:text="TITLE GOES HERE"
             android:paddingTop="20dp"
@@ -23,24 +23,24 @@
             />
 
         <TextView
-            android:id="@+id/bio"
+            android:id="@+id/infoPost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/title"
+            android:layout_below="@+id/titlePost"
             android:paddingLeft="20dp"
-            android:paddingTop="20dp"
+            android:paddingTop="10dp"
             android:text="BIO BIO BIO BIO BIO BIO BIO BIO"
             />
 
         <ImageView
-            android:id="@+id/image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:id="@+id/imagePost"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="98dp"
-            android:paddingLeft="20dp"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/orange"
+            android:fitsSystemWindows="false"
+            android:scaleType="fitXY" />
 
 
     </RelativeLayout>

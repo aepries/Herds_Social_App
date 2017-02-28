@@ -20,12 +20,12 @@
                 android:id="@+id/iv_image"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:src="@drawable/abc_btn_radio_material">
+                android:src="@drawable/abc_btn_radio_material"
+                >
             </ImageView>
 
             <TextView
                 android:id="@+id/tv_text"
-
                 android:layout_toRightOf ="@+id/iv_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

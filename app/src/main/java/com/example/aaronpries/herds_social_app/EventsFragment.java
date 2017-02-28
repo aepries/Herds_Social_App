@@ -15,7 +15,6 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DataSnapshot;
@@ -165,6 +164,7 @@ public class EventsFragment extends Fragment {
                                 expand.setArguments(bundle);
 
                                 fragT.replace(R.id.frame, expand);
+                                fragT.addToBackStack("");
                                 fragT.commit();
 
 
@@ -197,7 +197,7 @@ public class EventsFragment extends Fragment {
         this.postKey = postKey;
     }
 
-    
+
 
 
 }
