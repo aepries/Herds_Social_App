@@ -165,7 +165,11 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_add) {
-            return true;
+            AddEventsFragment fragment = new AddEventsFragment();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frame,fragment);
+            fragmentTransaction.addToBackStack("");
+            fragmentTransaction.commit();
         }
 
         return super.onOptionsItemSelected(item);
