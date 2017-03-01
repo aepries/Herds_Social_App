@@ -1,22 +1,121 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.aaronpries.herds_social_app.AddEventsFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-    <TextView
-        android:text="HERROW"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:textColor="@color/red"
-        android:textSize="50dp"
-        />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+<!--IMAGE-->
+        <ImageButton
+            android:maxWidth="400dp"
+            android:maxHeight="200dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/add_btn"
+            android:id="@+id/fieldImageButton"
+            android:background="#00FFFFFF"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:layout_alignParentTop="true"
+            android:layout_alignEnd="@+id/fieldEventTitle"
+            android:layout_alignStart="@+id/fieldEventTitle" />
+
+<!--EVENT TITLE-->
+        <EditText
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:paddingTop="10dp"
+            android:hint="Event Title"
+            android:ems="10"
+            android:layout_below="@+id/fieldImageButton"
+            android:layout_marginTop="10dp"
+            android:id="@+id/fieldEventTitle" />
+
+<!--EVENT DESCRIPTION-->
+        <EditText
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:inputType="textPersonName"
+            android:hint="Description"
+            android:ems="10"
+            android:layout_below="@+id/fieldEventTitle"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:id="@+id/fieldEventDescription"
+            android:maxLines="3" />
+
+<!--EVENT DATE-->
+        <EditText
+            android:textStyle="bold"
+            android:maxLength="8"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:hint="03/14/17"
+            android:ems="10"
+            android:layout_marginTop="10dp"
+            android:id="@+id/fieldEventDate"
+            android:layout_below="@+id/fieldEventDescription"
+            android:layout_alignStart="@+id/fieldEventDescription" />
+
+
+<!--SUBMIT BUTTON-->
+        <Button
+            android:text="Add Event"
+            android:textColor="#FFFFFF"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnAddEvent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true" />
+        
+<!--GROUP SELECTION-->
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_below="@+id/fieldEventDate"
+            android:layout_alignStart="@+id/fieldEventDate"
+            android:layout_marginTop="10dp"
+            android:id="@+id/fieldGroup"
+            android:hint="Choose Group"
+            android:layout_alignParentLeft="true"
+            android:textColorHighlight="@color/colorAccent"/>
+
+<!--CATEGORY SELECTION-->
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_below="@+id/fieldGroup"
+            android:layout_alignStart="@+id/fieldEventDate"
+            android:layout_marginTop="10dp"
+            android:id="@+id/fieldCategory"
+            android:hint="Choose Category"
+            android:layout_alignParentLeft="true"
+            android:textColorHighlight="@color/colorAccent"/>
+
+
+    </RelativeLayout>
+
 
 </FrameLayout>
