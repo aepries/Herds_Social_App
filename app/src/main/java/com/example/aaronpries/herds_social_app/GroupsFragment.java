@@ -43,7 +43,7 @@ public class GroupsFragment extends Fragment {
             groupImage = (ImageView)mView.findViewById(R.id.image);
             groupShortBio = (TextView)mView.findViewById(R.id.shortbio);
         }
-
+//
 //        public TextView getgroupTitle() {
 //            return groupTitle;
 //        }
@@ -51,16 +51,16 @@ public class GroupsFragment extends Fragment {
 //        public void setgroupTitle(TextView groupTitle) {
 //            this.groupTitle = groupTitle;
 //        }
-
+//
 //        public TextView getgroupTitle() {
 //            return groupTitle;
 //        }
-
-//        public void setTitle(String title){
-//            TextView group_name = (TextView)mView.findViewById(R.id.title);
-//            group_name.setText(title);
 //
-//        }
+        public void setTitle(String title){
+            TextView group_name = (TextView)mView.findViewById(R.id.title);
+            group_name.setText(title);
+
+        }
 //
 //        public setShortBio(String shortbio){
 //            TextView group_name = (TextView)mView.findViewById(R.id.shortbio);

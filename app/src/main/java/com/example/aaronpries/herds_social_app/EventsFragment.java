@@ -39,6 +39,8 @@ public class EventsFragment extends Fragment {
     public static class EventViewHolder extends RecyclerView.ViewHolder{
         public TextView eventTitle;
         public ImageView eventImage;
+        public ImageView eventCategory;
+        public TextView eventDate;
         View mView;
 
         public EventViewHolder(View v){
@@ -46,6 +48,8 @@ public class EventsFragment extends Fragment {
             mView = v;
             eventTitle = (TextView)mView.findViewById(R.id.title);
             eventImage = (ImageView)mView.findViewById(R.id.image);
+            eventCategory = (ImageView)mView.findViewById(R.id.category);
+            eventDate = (TextView)mView.findViewById(R.id.date);
         }
 
         public TextView getEventTitle() {
@@ -56,15 +60,13 @@ public class EventsFragment extends Fragment {
             this.eventTitle = eventTitle;
         }
 
-//        public TextView getEventTitle() {
-//            return eventTitle;
+
+
+//        public void setTitle(String title){
+//            TextView post_title = (TextView)mView.findViewById(R.id.title);
+//            post_title.setText(title);
+//
 //        }
-
-        public void setTitle(String title){
-            TextView post_title = (TextView)mView.findViewById(R.id.title);
-            post_title.setText(title);
-
-        }
     }
 
     private DatabaseReference mFirebaseDatabaseReference;
@@ -103,13 +105,20 @@ public class EventsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.events_fragment,container,false);
         v.setTag(TAG);
-//RV
+
+//RecyclerView
         mEventRecyclerView = (RecyclerView)v.findViewById(R.id.events_list);
-        //LLM
+
+//Layout Manager
         mLinearLayoutManager = new LinearLayoutManager(getActivity());
         mEventRecyclerView.setLayoutManager(mLinearLayoutManager);
-        //DB
+
+//Database reference
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
+
+//Keep DB synced offline
+        mFirebaseDatabaseReference.keepSynced(true);
+
         mFirebaseAdapter = new FirebaseRecyclerAdapter<ModelClass, EventViewHolder>(
                 ModelClass.class,
                 R.layout.design_row,
@@ -120,15 +129,18 @@ public class EventsFragment extends Fragment {
             protected void populateViewHolder(EventViewHolder viewHolder, ModelClass model, final int position) {
 
                 final String post_key = getRef(position).getKey();
-                //final String post_title = getRef(position).getKey().getClass().getName();
 
 
 
+
+                viewHolder.eventDate.setText(model.getDate());
                 viewHolder.eventTitle.setText(model.getTitle());
                 Picasso.with(getActivity().getApplicationContext())
                         .load(model.getImage())
                         .fit()
                         .into(viewHolder.eventImage);
+
+
 
                 viewHolder.mView.setOnClickListener(new View.OnClickListener() {
 
@@ -143,7 +155,7 @@ public class EventsFragment extends Fragment {
 
                         mFirebaseDatabaseReference.child(DATA).child(post_key).addValueEventListener(new ValueEventListener() {
 
-                            String post_info, post_title, post_image;
+                            String post_info, post_title, post_image, post_category;
 
                             @Override
                             public void onDataChange(DataSnapshot snapshot) {
@@ -151,6 +163,7 @@ public class EventsFragment extends Fragment {
                                 post_info = snapshot.child("info").getValue().toString();
                                 post_title = snapshot.child("title").getValue().toString();
                                 post_image = snapshot.child("image").getValue().toString();
+                                post_category = snapshot.child("category").getValue().toString();
 
                                 Bundle bundle = new Bundle();
                                 bundle.putString("info", post_info);
@@ -196,6 +209,8 @@ public class EventsFragment extends Fragment {
     public void setPostKey(String postKey) {
         this.postKey = postKey;
     }
+
+
 
 
 
