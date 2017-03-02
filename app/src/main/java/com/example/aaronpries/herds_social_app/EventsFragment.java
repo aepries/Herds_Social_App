@@ -29,6 +29,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.Map;
 
+import static com.example.aaronpries.herds_social_app.R.id.category;
+
 /**
  * Created by Admin on 04-06-2015.
  */
@@ -48,7 +50,7 @@ public class EventsFragment extends Fragment {
             mView = v;
             eventTitle = (TextView)mView.findViewById(R.id.title);
             eventImage = (ImageView)mView.findViewById(R.id.image);
-            eventCategory = (ImageView)mView.findViewById(R.id.category);
+            eventCategory = (ImageView)mView.findViewById(category);
             eventDate = (TextView)mView.findViewById(R.id.date);
         }
 
@@ -139,6 +141,36 @@ public class EventsFragment extends Fragment {
                         .load(model.getImage())
                         .fit()
                         .into(viewHolder.eventImage);
+
+
+                switch (model.getCategory()){
+                    case "music": {
+                        viewHolder.eventCategory.setImageResource(R.drawable.ic_action_music_1);
+                        break;
+                    }
+                    case "greek": {
+                        viewHolder.eventCategory.setImageResource(R.drawable.ic_account_balance);
+                        break;
+                    }
+                    case "nightlife": {
+                        viewHolder.eventCategory.setImageResource(R.drawable.ic_local_bar);
+                        break;
+                    }
+                    case "food": {
+                        viewHolder.eventCategory.setImageResource(R.drawable.ic_local_dining);
+                        break;
+                    }
+                    case "community": {
+                        viewHolder.eventCategory.setImageResource(R.drawable.ic_action_users);
+                        break;
+                    }
+                    case "philanthropy": {
+                        viewHolder.eventCategory.setImageResource(R.drawable.ic_public);
+                        break;
+                    }
+                    default:
+                        break;
+                }
 
 
 

@@ -85,7 +85,7 @@
             android:id="@+id/btnAddEvent"
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true" />
-        
+
 <!--GROUP SELECTION-->
         <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
             android:layout_width="match_parent"

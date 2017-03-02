@@ -43,7 +43,8 @@ public class AddEventsFragment extends Fragment {
     private StorageReference mStorage;
     private DatabaseReference mDatabase;
     private ProgressDialog mProgress;
-    private MaterialBetterSpinner mSpinner;
+    private MaterialBetterSpinner mGroups;
+    private MaterialBetterSpinner mCategory;
 
     private static  final int GALLERY_REQUEST = 1;
     private static String TAG = "EventsFragment";
@@ -78,6 +79,10 @@ public class AddEventsFragment extends Fragment {
         mDesc = (EditText)v.findViewById(R.id.fieldEventDescription);
         mDate = (EditText)v.findViewById(R.id.fieldEventDate);
         mSubmit = (Button)v.findViewById(R.id.btnAddEvent);
+        mGroups = (MaterialBetterSpinner)v.findViewById(R.id.fieldGroup);
+        mCategory = (MaterialBetterSpinner)v.findViewById(R.id.fieldCategory);
+
+
 
 //PROGRESS BAR
         mProgress =  new ProgressDialog(getActivity());
@@ -137,12 +142,16 @@ public class AddEventsFragment extends Fragment {
         final String title_value = mTitle.getText().toString().trim();
         final String desc_value = mDesc.getText().toString().trim();
         final String date_value = mDate.getText().toString().trim();
+        final String group_value = mDate.getText().toString().trim();
+        final String category_value = mDate.getText().toString().trim();
 
 //CHECK TO MAKE SURE FIELDS AREN'T EMPTY
         if(!TextUtils.isEmpty(title_value)
                 && !TextUtils.isEmpty(desc_value)
                 && !TextUtils.isEmpty(date_value)
-                && mImageUri != null){
+                && mImageUri != null
+                && !TextUtils.isEmpty(group_value)
+                && !TextUtils.isEmpty(category_value)){
 
             StorageReference filepath = mStorage.child("DATA").child(mImageUri.getLastPathSegment());
 
@@ -158,6 +167,8 @@ public class AddEventsFragment extends Fragment {
                     newPost.child("info").setValue(desc_value);
                     newPost.child("date").setValue(date_value);
                     newPost.child("image").setValue(downloadUrl.toString());
+                    newPost.child("group").setValue(group_value);
+                    newPost.child("category").setValue(category_value);
 
                     mProgress.dismiss();
 
