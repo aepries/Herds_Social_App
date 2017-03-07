@@ -33,7 +33,7 @@ public class GroupsFragment extends Fragment {
     public static class GroupViewHolder extends RecyclerView.ViewHolder{
         public TextView groupTitle;
         public ImageView groupImage;
-        public TextView groupShortBio;
+        //public TextView groupShortBio;
         View mView;
 
         public GroupViewHolder(View v){
@@ -41,7 +41,7 @@ public class GroupsFragment extends Fragment {
             mView = v;
             groupTitle = (TextView)mView.findViewById(R.id.name);
             groupImage = (ImageView)mView.findViewById(R.id.image);
-            groupShortBio = (TextView)mView.findViewById(R.id.shortbio);
+            //groupShortBio = (TextView)mView.findViewById(R.id.shortbio);
         }
 //
 //        public TextView getgroupTitle() {
@@ -119,7 +119,7 @@ public class GroupsFragment extends Fragment {
 
 
                 viewHolder.groupTitle.setText(model.getName());
-                viewHolder.groupShortBio.setText(model.getShortBio());
+                //viewHolder.groupShortBio.setText(model.getShortBio());
                 Picasso.with(getActivity().getApplicationContext())
                         .load(model.getImage())
                         .fit()
@@ -143,12 +143,12 @@ public class GroupsFragment extends Fragment {
                             @Override
                             public void onDataChange(DataSnapshot snapshot) {
                                 System.out.println(snapshot.getValue());
-                                group_info = snapshot.child("shortbio").getValue().toString();
+                                //group_info = snapshot.child("shortbio").getValue().toString();
                                 group_name = snapshot.child("name").getValue().toString();
                                 group_image = snapshot.child("image").getValue().toString();
 
                                 Bundle bundle = new Bundle();
-                                bundle.putString("shortbio", group_info);
+                                //bundle.putString("shortbio", group_info);
                                 bundle.putString("name", group_name);
                                 bundle.putString("image", group_image);
 

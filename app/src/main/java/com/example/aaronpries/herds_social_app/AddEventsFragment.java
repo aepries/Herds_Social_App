@@ -15,6 +15,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -49,6 +53,11 @@ public class AddEventsFragment extends Fragment {
     private static  final int GALLERY_REQUEST = 1;
     private static String TAG = "EventsFragment";
 
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference mRootReference = firebaseDatabase.getReference();
+    private DatabaseReference myDatabase;
+    private StorageReference mStorageImage;
+
 
 
 //CREATE OPTIONS FOR DROPDOWN MENU (GROUP)
@@ -66,8 +75,11 @@ public class AddEventsFragment extends Fragment {
         final View v = inflater.inflate(R.layout.add_events_fragment, container, false);
         v.setTag(TAG);
 
+        myDatabase = FirebaseDatabase.getInstance().getReference();
+
 //MAKE REFERENCE TO DATABASE STORAGE FOR IMAGES (FOLDER)
         mStorage = FirebaseStorage.getInstance().getReference();
+        mStorageImage = FirebaseStorage.getInstance().getReference().child("eventImages");
 
 //MAKE REFERENCE TO DATABASE ROOT DIRECTORY
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Data");
@@ -85,7 +97,7 @@ public class AddEventsFragment extends Fragment {
 
 
 //PROGRESS BAR
-        mProgress =  new ProgressDialog(getActivity());
+//        mProgress =  new ProgressDialog(getActivity());
 
 //DROPDOWN MENU (GROUPS)
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
@@ -135,51 +147,54 @@ public class AddEventsFragment extends Fragment {
 
     private void startEventPost() {
 
-        mProgress.setMessage("Posting Event...");
-        mProgress.show();
+//        mProgress.setMessage("Posting Event...");
+//        mProgress.show();
 
 //GET DATA FROM FIELDS
-        final String title_value = mTitle.getText().toString().trim();
-        final String desc_value = mDesc.getText().toString().trim();
-        final String date_value = mDate.getText().toString().trim();
-        final String group_value = mDate.getText().toString().trim();
-        final String category_value = mDate.getText().toString().trim();
+        final String title = mTitle.getText().toString().trim();
+        final String desc = mDesc.getText().toString().trim();
+        final String date = mDate.getText().toString().trim();
+        final String group = mGroups.getText().toString().trim();
+        final String category = mCategory.getText().toString().trim();
 
-//CHECK TO MAKE SURE FIELDS AREN'T EMPTY
-        if(!TextUtils.isEmpty(title_value)
-                && !TextUtils.isEmpty(desc_value)
-                && !TextUtils.isEmpty(date_value)
-                && mImageUri != null
-                && !TextUtils.isEmpty(group_value)
-                && !TextUtils.isEmpty(category_value)){
 
-            StorageReference filepath = mStorage.child("DATA").child(mImageUri.getLastPathSegment());
+//        StorageReference filepath = mStorageImage.child(mImageUri.getLastPathSegment());
+//         filepath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//             @Override
+//             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//
+//                 @SuppressWarnings("VisibleForTests") String image = taskSnapshot.getDownloadUrl().toString();
+//
+//                 Toast.makeText(getActivity(), "it worked", Toast.LENGTH_SHORT).show();
+//
+//             }
+//         });
 
-            filepath.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
 
+
+                    //@SuppressWarnings("VisibleForTests") Uri downloadUrl = taskSnapshot.getDownloadUrl();
+
+                    ModelAddEvent modelAdd = new ModelAddEvent(title,desc,category,date);
                     DatabaseReference newPost = mDatabase.push();
+                    newPost.setValue(modelAdd);
 
-                    newPost.child("title").setValue(title_value);
-                    newPost.child("info").setValue(desc_value);
-                    newPost.child("date").setValue(date_value);
-                    newPost.child("image").setValue(downloadUrl.toString());
-                    newPost.child("group").setValue(group_value);
-                    newPost.child("category").setValue(category_value);
+                    Toast.makeText(getActivity(), "Event Created", Toast.LENGTH_SHORT).show();
 
-                    mProgress.dismiss();
 
-                }
-            });
 
+        EventsFragment fragment = new EventsFragment();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frame,fragment);
+        fragmentTransaction.commit();
+
+//                   mProgress.dismiss();
 
         }
 
 
-    }
+
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -187,7 +202,9 @@ public class AddEventsFragment extends Fragment {
 
         if(requestCode == GALLERY_REQUEST && resultCode == RESULT_OK) {
 
-            mImageUri = data.getData();
+            Uri mImageUri = data.getData();
+
+            StorageReference filepath = mStorage.child("image").child(mImageUri.getLastPathSegment());
 
             mSelectImage.setImageURI(mImageUri);
 
