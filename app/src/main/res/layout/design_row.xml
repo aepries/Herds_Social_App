@@ -39,6 +39,7 @@
             android:text="Post title goes here"
             android:layout_margin="10dp"
             android:textSize="20dp"
+            android:textStyle="bold"
             />
 
         <RelativeLayout
@@ -65,15 +66,27 @@
 
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/date"
-                android:textSize="20dp"
-                android:text="01/01/17"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="31dp"
+                android:layout_toEndOf="@+id/date"
                 android:maxLines="1"
+                android:text="6:00PM"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/category"
-                android:layout_marginBottom="10dp"
+                android:maxLines="1"
+                android:text="01/01/17"
+                android:textSize="20dp"
 
                 />
 

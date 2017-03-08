@@ -101,7 +101,7 @@
             android:layout_marginTop="10dp"
             android:ems="10"
             android:hint="6:00PM"
-            android:inputType="date"
+            android:inputType="time"
             android:maxLength="8"
             android:textStyle="bold" />
 

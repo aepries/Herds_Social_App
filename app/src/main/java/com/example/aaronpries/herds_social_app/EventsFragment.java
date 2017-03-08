@@ -43,6 +43,7 @@ public class EventsFragment extends Fragment {
         public ImageView eventImage;
         public ImageView eventCategory;
         public TextView eventDate;
+        public TextView eventTime;
         View mView;
 
         public EventViewHolder(View v){
@@ -52,6 +53,7 @@ public class EventsFragment extends Fragment {
             eventImage = (ImageView)mView.findViewById(R.id.image);
             eventCategory = (ImageView)mView.findViewById(category);
             eventDate = (TextView)mView.findViewById(R.id.date);
+            eventTime = (TextView)mView.findViewById(R.id.time);
         }
 
         public TextView getEventTitle() {
@@ -137,6 +139,7 @@ public class EventsFragment extends Fragment {
 
                 viewHolder.eventDate.setText(model.getDate());
                 viewHolder.eventTitle.setText(model.getTitle());
+                viewHolder.eventTime.setText(model.getTime());
                 Picasso.with(getActivity().getApplicationContext())
                         .load(model.getImage())
                         .fit()
@@ -187,7 +190,7 @@ public class EventsFragment extends Fragment {
 
                         mFirebaseDatabaseReference.child(DATA).child(post_key).addValueEventListener(new ValueEventListener() {
 
-                            String post_info, post_title, post_image, post_category;
+                            String post_info, post_title, post_image, post_category, post_time, post_date, post_location, post_group;
 
                             @Override
                             public void onDataChange(DataSnapshot snapshot) {
@@ -196,11 +199,20 @@ public class EventsFragment extends Fragment {
                                 post_title = snapshot.child("title").getValue().toString();
                                 post_image = snapshot.child("image").getValue().toString();
                                 post_category = snapshot.child("category").getValue().toString();
+                                post_date = snapshot.child("date").getValue().toString();
+                                post_time = snapshot.child("time").getValue().toString();
+                                post_group = snapshot.child("group").getValue().toString();
+                                post_location = snapshot.child("location").getValue().toString();
 
                                 Bundle bundle = new Bundle();
                                 bundle.putString("info", post_info);
                                 bundle.putString("title", post_title);
                                 bundle.putString("image", post_image);
+                                bundle.putString("date", post_date);
+                                bundle.putString("time", post_time);
+                                bundle.putString("location", post_location);
+                                bundle.putString("group", post_group);
+                                bundle.putString("category", post_category);
 
                                 FragmentManager fragM = getActivity().getSupportFragmentManager();
                                 FragmentTransaction fragT = fragM.beginTransaction();
