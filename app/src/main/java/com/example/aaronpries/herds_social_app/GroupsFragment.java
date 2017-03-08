@@ -138,17 +138,17 @@ public class GroupsFragment extends Fragment {
 
                         mFirebaseDatabaseReference.child(GROUPS).child(post_key).addValueEventListener(new ValueEventListener() {
 
-                            String group_info, group_name, group_image;
+                            String group_bio, group_name, group_image;
 
                             @Override
                             public void onDataChange(DataSnapshot snapshot) {
                                 System.out.println(snapshot.getValue());
-                                //group_info = snapshot.child("shortbio").getValue().toString();
+                                group_bio = snapshot.child("bio").getValue().toString();
                                 group_name = snapshot.child("name").getValue().toString();
                                 group_image = snapshot.child("image").getValue().toString();
 
                                 Bundle bundle = new Bundle();
-                                //bundle.putString("shortbio", group_info);
+                                bundle.putString("bio", group_bio);
                                 bundle.putString("name", group_name);
                                 bundle.putString("image", group_image);
 
