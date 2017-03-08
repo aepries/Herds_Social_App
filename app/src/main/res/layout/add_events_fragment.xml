@@ -100,7 +100,7 @@
             android:layout_below="@+id/fieldEventDescription"
             android:layout_marginTop="10dp"
             android:ems="10"
-            android:hint="6:00PM"
+            android:hint="6:00pm"
             android:inputType="time"
             android:maxLength="8"
             android:textStyle="bold" />

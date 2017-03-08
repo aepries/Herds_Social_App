@@ -38,13 +38,26 @@ public class EventsExpandedFragment extends Fragment {
     String title = bundle.getString("title");
     String info = bundle.getString("info");
     String image = bundle.getString("image");
+    String date = bundle.getString("date");
+    String time = bundle.getString("time");
+    String group = bundle.getString("group");
+    String location = bundle.getString("location");
 
     TextView titleText = (TextView) rootview.findViewById(R.id.titlePost);
     TextView infoText = (TextView) rootview.findViewById(R.id.infoPost);
     ImageView imageView = (ImageView) rootview.findViewById(R.id.imagePost);
+    TextView timeText = (TextView) rootview.findViewById(R.id.timePost);
+    TextView dateText = (TextView) rootview.findViewById(R.id.datePost);
+    TextView locationText = (TextView) rootview.findViewById(R.id.locationPost);
+    TextView groupText = (TextView) rootview.findViewById(R.id.groupPost);
+
 
     titleText.setText(title);
     infoText.setText(info);
+    timeText.setText(time);
+    dateText.setText(date);
+    locationText.setText(location);
+    groupText.setText(group);
     Picasso.with(getActivity().getApplicationContext()).load(image).into(imageView);
 
 //    Picasso.with(getActivity().getApplicationContext())
