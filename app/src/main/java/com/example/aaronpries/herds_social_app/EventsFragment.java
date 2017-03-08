@@ -144,27 +144,27 @@ public class EventsFragment extends Fragment {
 
 
                 switch (model.getCategory()){
-                    case "music": {
+                    case "Music": {
                         viewHolder.eventCategory.setImageResource(R.drawable.ic_action_music_1);
                         break;
                     }
-                    case "greek": {
+                    case "Greek": {
                         viewHolder.eventCategory.setImageResource(R.drawable.ic_account_balance);
                         break;
                     }
-                    case "nightlife": {
+                    case "Night Life": {
                         viewHolder.eventCategory.setImageResource(R.drawable.ic_local_bar);
                         break;
                     }
-                    case "food": {
+                    case "Food": {
                         viewHolder.eventCategory.setImageResource(R.drawable.ic_local_dining);
                         break;
                     }
-                    case "community": {
+                    case "Community": {
                         viewHolder.eventCategory.setImageResource(R.drawable.ic_action_users);
                         break;
                     }
-                    case "philanthropy": {
+                    case "Philanthropy": {
                         viewHolder.eventCategory.setImageResource(R.drawable.ic_public);
                         break;
                     }

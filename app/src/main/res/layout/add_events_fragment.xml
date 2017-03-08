@@ -11,108 +11,152 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-<!--IMAGE-->
-        <ImageButton
-            android:maxWidth="400dp"
-            android:maxHeight="200dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+        <!--DESCRIPTION-->
+        <TextView
+            android:id="@+id/Header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/add_btn"
-            android:id="@+id/fieldImageButton"
-            android:background="#00FFFFFF"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop"
+            android:layout_marginTop="11dp"
+            android:text="Add A Local Event"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textSize="25dp"
             android:layout_alignParentTop="true"
-            android:layout_alignEnd="@+id/fieldEventTitle"
-            android:layout_alignStart="@+id/fieldEventTitle" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="15dp"/>
 
-<!--EVENT TITLE-->
+
+        <!--IMAGE-->
         <EditText
-            android:textStyle="bold"
+            android:id="@+id/fieldURL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:paddingTop="10dp"
-            android:hint="Event Title"
             android:ems="10"
-            android:layout_below="@+id/fieldImageButton"
+            android:hint="Image URL"
+            android:inputType="textPersonName"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:scaleType="centerCrop"
+            android:textStyle="bold"
+            app:srcCompat="@drawable/add_btn"
+            android:layout_marginTop="11dp"
+            android:layout_below="@+id/Header"
+            android:layout_alignStart="@+id/fieldEventTitle"
+            android:layout_alignEnd="@+id/fieldEventTitle" />
+
+        <!--EVENT TITLE-->
+        <EditText
+            android:id="@+id/fieldEventTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fieldURL"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
-            android:id="@+id/fieldEventTitle" />
+            android:ems="10"
+            android:hint="Event Title"
+            android:inputType="textPersonName"
+            android:paddingTop="10dp"
+            android:textStyle="bold" />
 
-<!--EVENT DESCRIPTION-->
+        <!--EVENT DESCRIPTION-->
         <EditText
-            android:textStyle="bold"
+            android:id="@+id/fieldEventDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:inputType="textPersonName"
-            android:hint="Description"
-            android:ems="10"
             android:layout_below="@+id/fieldEventTitle"
             android:layout_centerHorizontal="true"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
-            android:id="@+id/fieldEventDescription"
-            android:maxLines="3" />
+            android:ems="10"
+            android:hint="Description"
+            android:inputType="textPersonName"
+            android:maxLines="3"
+            android:textStyle="bold" />
 
-<!--EVENT DATE-->
+        <!--EVENT DATE-->
         <EditText
-            android:textStyle="bold"
-            android:maxLength="8"
+            android:id="@+id/fieldEventDate"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:inputType="date"
-            android:hint="03/14/17"
+            android:layout_alignBaseline="@+id/fieldTime"
+            android:layout_alignBottom="@+id/fieldTime"
+            android:layout_marginStart="31dp"
+            android:layout_toEndOf="@+id/fieldTime"
             android:ems="10"
-            android:layout_marginTop="10dp"
-            android:id="@+id/fieldEventDate"
+            android:hint="03/14/17"
+            android:inputType="date"
+            android:maxLength="8"
+            android:textStyle="bold" />
+
+
+        <!--EVENT TIME-->
+        <EditText
+            android:id="@+id/fieldTime"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/fieldEventDescription"
             android:layout_below="@+id/fieldEventDescription"
-            android:layout_alignStart="@+id/fieldEventDescription" />
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="6:00PM"
+            android:inputType="date"
+            android:maxLength="8"
+            android:textStyle="bold" />
 
-
-<!--SUBMIT BUTTON-->
+        <!--SUBMIT BUTTON-->
         <Button
-            android:text="Add Event"
-            android:textColor="#FFFFFF"
-            android:background="@color/colorPrimary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/btnAddEvent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:background="@color/colorPrimary"
+            android:text="Add Event"
+            android:textColor="#FFFFFF" />
 
-<!--GROUP SELECTION-->
+        <!--GROUP SELECTION-->
         <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_below="@+id/fieldEventDate"
-            android:layout_alignStart="@+id/fieldEventDate"
-            android:layout_marginTop="10dp"
             android:id="@+id/fieldGroup"
-            android:hint="Choose Group"
-            android:layout_alignParentLeft="true"
-            android:textColorHighlight="@color/colorAccent"/>
-
-<!--CATEGORY SELECTION-->
-        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_below="@+id/fieldGroup"
-            android:layout_alignStart="@+id/fieldEventDate"
-            android:layout_marginTop="10dp"
-            android:id="@+id/fieldCategory"
-            android:hint="Choose Category"
             android:layout_alignParentLeft="true"
-            android:textColorHighlight="@color/colorAccent"/>
+            android:layout_alignStart="@+id/fieldEventDate"
+            android:layout_below="@+id/fieldEventDate"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:hint="Choose Group"
+            android:textColorHighlight="@color/colorAccent" />
+
+        <!--CATEGORY SELECTION-->
+        <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+            android:id="@+id/fieldCategory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignStart="@+id/fieldEventDate"
+            android:layout_below="@+id/fieldGroup"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
+            android:hint="Choose Category"
+            android:textColorHighlight="@color/colorAccent" />
+
+        <!--EVENT LOCATION-->
+        <EditText
+            android:id="@+id/fieldLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/fieldEventDescription"
+            android:layout_below="@+id/fieldCategory"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="Event Location"
+            android:textStyle="bold"
+
+            />
 
 
     </RelativeLayout>

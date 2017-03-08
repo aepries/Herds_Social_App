@@ -2,12 +2,15 @@ package com.example.aaronpries.herds_social_app;
 
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +31,7 @@ public class ProfileFragment extends Fragment {
 
     LoginButton loginButton;
     TextView textView;
+    ImageView profilePicture;
     CallbackManager callbackManager;
 
 
@@ -45,6 +49,7 @@ public class ProfileFragment extends Fragment {
         FacebookSdk.getSdkVersion();
         loginButton = (LoginButton)v.findViewById(R.id.login_button);
         textView = (TextView)v.findViewById(R.id.loginTextView);
+        profilePicture = (ImageView)v.findViewById(R.id.profilePicture);
         callbackManager = CallbackManager.Factory.create();
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -52,6 +57,7 @@ public class ProfileFragment extends Fragment {
 
                 Toast.makeText(getContext(), "Connected to Facebook", Toast.LENGTH_SHORT).show();
                 textView.setText("Login Success");
+                profilePicture.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.profile));
 
             }
 

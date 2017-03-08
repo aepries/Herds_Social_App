@@ -38,11 +38,14 @@ import static android.app.Activity.RESULT_OK;
 public class AddEventsFragment extends Fragment {
 
 
-    private ImageButton mSelectImage;
+//    private ImageButton mSelectImage;
     private EditText mTitle;
     private EditText mDesc;
     private EditText mDate;
     private Button mSubmit;
+    private EditText mTime;
+    private EditText mLocation;
+    private EditText mURL;
     private Uri mImageUri = null;
     private StorageReference mStorage;
     private DatabaseReference mDatabase;
@@ -86,13 +89,16 @@ public class AddEventsFragment extends Fragment {
 
 
 //MAP FIELDS TO LAYOUT
-        mSelectImage = (ImageButton)v.findViewById(R.id.fieldImageButton);
+        //mSelectImage = (ImageButton)v.findViewById(R.id.fieldImageButton);
         mTitle = (EditText)v.findViewById(R.id.fieldEventTitle);
         mDesc = (EditText)v.findViewById(R.id.fieldEventDescription);
         mDate = (EditText)v.findViewById(R.id.fieldEventDate);
         mSubmit = (Button)v.findViewById(R.id.btnAddEvent);
         mGroups = (MaterialBetterSpinner)v.findViewById(R.id.fieldGroup);
         mCategory = (MaterialBetterSpinner)v.findViewById(R.id.fieldCategory);
+        mURL = (EditText)v.findViewById(R.id.fieldURL);
+        mTime = (EditText)v.findViewById(R.id.fieldTime);
+        mLocation = (EditText)v.findViewById(R.id.fieldLocation);
 
 
 
@@ -112,24 +118,24 @@ public class AddEventsFragment extends Fragment {
         textView2.setAdapter(adapter2);
 
 
-
-//CLICK LISTENER FOR IMAGE SELECTION
-        mSelectImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public int hashCode() {
-                return super.hashCode();
-            }
-
-//REQUEST IMAGES FROM GALLERY
-            @Override
-            public void onClick(View view) {
-
-                Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
-                galleryIntent.setType("image/*");
-                startActivityForResult(galleryIntent, GALLERY_REQUEST);
-
-            }
-        });
+//
+////CLICK LISTENER FOR IMAGE SELECTION
+//        mSelectImage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public int hashCode() {
+//                return super.hashCode();
+//            }
+//
+////REQUEST IMAGES FROM GALLERY
+//            @Override
+//            public void onClick(View view) {
+//
+//                Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+//                galleryIntent.setType("image/*");
+//                startActivityForResult(galleryIntent, GALLERY_REQUEST);
+//
+//            }
+//        });
 
 //CLICK LISTENER FOR SUBMIT BUTTON
         mSubmit.setOnClickListener(new View.OnClickListener() {
@@ -156,6 +162,9 @@ public class AddEventsFragment extends Fragment {
         final String date = mDate.getText().toString().trim();
         final String group = mGroups.getText().toString().trim();
         final String category = mCategory.getText().toString().trim();
+        final String image = mURL.getText().toString().trim();
+        final String time = mTime.getText().toString().trim();
+        final String location = mLocation.getText().toString().trim();
 
 
 //        StorageReference filepath = mStorageImage.child(mImageUri.getLastPathSegment());
@@ -175,7 +184,7 @@ public class AddEventsFragment extends Fragment {
 
                     //@SuppressWarnings("VisibleForTests") Uri downloadUrl = taskSnapshot.getDownloadUrl();
 
-                    ModelAddEvent modelAdd = new ModelAddEvent(title,desc,category,date);
+                    ModelAddEvent modelAdd = new ModelAddEvent(title,desc,category,date,image,time,location,group);
                     DatabaseReference newPost = mDatabase.push();
                     newPost.setValue(modelAdd);
 
@@ -196,20 +205,20 @@ public class AddEventsFragment extends Fragment {
 
 
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == GALLERY_REQUEST && resultCode == RESULT_OK) {
-
-            Uri mImageUri = data.getData();
-
-            StorageReference filepath = mStorage.child("image").child(mImageUri.getLastPathSegment());
-
-            mSelectImage.setImageURI(mImageUri);
-
-        }
-    }
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if(requestCode == GALLERY_REQUEST && resultCode == RESULT_OK) {
+//
+//            Uri mImageUri = data.getData();
+//
+//            StorageReference filepath = mStorage.child("image").child(mImageUri.getLastPathSegment());
+//
+//            mSelectImage.setImageURI(mImageUri);
+//
+//        }
+//    }
 
 
 }

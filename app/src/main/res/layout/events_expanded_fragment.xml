@@ -42,6 +42,34 @@
             android:fitsSystemWindows="false"
             android:scaleType="fitXY" />
 
+        <TextView
+            android:id="@+id/timePost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/infoPost"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="23dp"
+            android:text="TIME" />
+
+        <TextView
+            android:id="@+id/datePost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/timePost"
+            android:layout_marginStart="19dp"
+            android:layout_toEndOf="@+id/timePost"
+            android:text="DATE" />
+
+        <TextView
+            android:id="@+id/groupPost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/timePost"
+            android:layout_below="@+id/timePost"
+            android:layout_marginTop="35dp"
+            android:text="GROUP" />
+
 
     </RelativeLayout>
 
