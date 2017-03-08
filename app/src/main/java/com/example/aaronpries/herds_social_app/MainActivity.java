@@ -89,13 +89,6 @@ public class MainActivity extends AppCompatActivity {
 
             HomePage();
 
-//        if (isOnce() == false){
-//            startProgress();
-//            setTrue(once);
-//        }
-
-
-            //HomePage();
 
             // Initializing Toolbar and setting it as the actionbar
             toolbar = (Toolbar) findViewById(R.id.toolbar);

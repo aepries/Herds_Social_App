@@ -3,18 +3,15 @@
     android:layout_width="100dp"
     android:layout_height="100dp">
     <item
-        android:drawable="@android:color/background_light"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <item
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:drawable="@android:color/background_light"/>
+    <item >
         <bitmap
             android:gravity="center"
             android:filter="true"
-            android:src="@drawable/bear"
-            android:layout_width="100dp"
-            android:layout_height="100dp"/>
+            android:src="@drawable/ic_launcher"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+            />
     </item>
 
 </layer-list>
