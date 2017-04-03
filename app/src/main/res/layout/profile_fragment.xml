@@ -14,31 +14,87 @@
             android:id="@+id/profilePicture"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/com_facebook_profile_picture_blank_square"
-            android:layout_alignParentTop="true"
             android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
             android:layout_marginStart="27dp"
             android:layout_marginTop="35dp"
-            />
+            app:srcCompat="@drawable/com_facebook_profile_picture_blank_square" />
 
+
+        <!--<com.facebook.login.widget.LoginButton-->
+        <!--android:id="@+id/login_button"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center_horizontal"-->
+        <!--android:layout_marginTop="93dp"-->
+        <!--android:layout_below="@+id/profilePicture"-->
+        <!--android:layout_centerHorizontal="true" />-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/loginTextView"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/login_button"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginTop="23dp"-->
+        <!--android:text="Connect Herds to Facebook!" />-->
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/profilePicture"
+            android:layout_centerHorizontal="true"
+            android:hint="Your Name"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/name"
+            android:layout_below="@+id/name"
+            android:layout_marginTop="17dp"
+            android:hint="Age"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/personalbio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/profilePicture"
+            android:layout_below="@+id/profilePicture"
+            android:layout_marginTop="21dp"
+            android:hint="Tell us about yourself"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/personalbio"
+            android:layout_alignStart="@+id/age"
+            android:layout_marginBottom="12dp"
+            android:hint="Member of..." />
+
+        <Button
+            android:id="@+id/editButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true"
+            android:background="@color/colorPrimary"
+            android:text="Edit Profile"
+            android:textColor="#FFFF" />
 
         <com.facebook.login.widget.LoginButton
             android:id="@+id/login_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="93dp"
-            android:layout_below="@+id/profilePicture"
+            android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
-
-        <TextView
-            android:id="@+id/loginTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/login_button"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="23dp"
-            android:text="Connect Herds to Facebook!" />
 
 
     </RelativeLayout>

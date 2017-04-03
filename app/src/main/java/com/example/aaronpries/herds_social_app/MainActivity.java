@@ -5,6 +5,9 @@ import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -15,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -33,6 +37,9 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -72,6 +79,21 @@ public class MainActivity extends AppCompatActivity {
 
 
         AppEventsLogger.activateApp(getApplication());
+
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(
+                    "com.example.aaronpries.herds_social_app",
+                    PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+
+        } catch (NoSuchAlgorithmException e) {
+
+        }
 
 
         SharedPreferences settings = getSharedPreferences("prefs", 0);
@@ -145,7 +167,9 @@ public class MainActivity extends AppCompatActivity {
                             ProfileFragment Pfragment = new ProfileFragment();
                             android.support.v4.app.FragmentTransaction PfragmentTransaction = getSupportFragmentManager().beginTransaction();
                             PfragmentTransaction.replace(R.id.frame, Pfragment);
+                            PfragmentTransaction.addToBackStack("");
                             PfragmentTransaction.commit();
+
                             return true;
 
                         default:

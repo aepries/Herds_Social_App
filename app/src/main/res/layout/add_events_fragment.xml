@@ -42,7 +42,9 @@
             android:layout_marginTop="11dp"
             android:layout_below="@+id/Header"
             android:layout_alignStart="@+id/fieldEventTitle"
-            android:layout_alignEnd="@+id/fieldEventTitle" />
+            android:layout_alignEnd="@+id/fieldEventTitle"
+            android:maxLines="1"
+            />
 
         <!--EVENT TITLE-->
         <EditText
@@ -80,20 +82,21 @@
             android:id="@+id/fieldEventDate"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/fieldTime"
-            android:layout_alignBottom="@+id/fieldTime"
-            android:layout_marginStart="31dp"
-            android:layout_toEndOf="@+id/fieldTime"
             android:ems="10"
             android:hint="03/14/17"
             android:inputType="date"
             android:maxLength="8"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_alignBaseline="@+id/fieldTime"
+            android:layout_alignBottom="@+id/fieldTime"
+            android:layout_alignEnd="@+id/fieldEventDescription"
+            android:layout_marginEnd="35dp" />
 
 
         <!--EVENT TIME-->
         <EditText
             android:id="@+id/fieldTime"
+            android:focusable="false"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/fieldEventDescription"
