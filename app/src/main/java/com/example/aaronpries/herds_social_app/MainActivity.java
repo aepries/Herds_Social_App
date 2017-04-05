@@ -30,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
+import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.firebase.ui.database.FirebaseListAdapter;
@@ -43,7 +44,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    CallbackManager callbackManager;
 
 //    public MainActivity(){
 //        startProgress();
@@ -79,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
 
 
         AppEventsLogger.activateApp(getApplication());
+
+        
+
 
         try {
             PackageInfo info = getPackageManager().getPackageInfo(
