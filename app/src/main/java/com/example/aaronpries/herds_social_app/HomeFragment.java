@@ -10,10 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.Profile;
 import com.facebook.login.LoginManager;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 public class HomeFragment extends Fragment {
@@ -24,16 +30,32 @@ public class HomeFragment extends Fragment {
     private TextView locale = null;
     private Button logoutButton = null;
     private Profile profile = null;
+    private ListView groups = null;
+//    private DatabaseReference mFirebaseDatabaseReference;
+//    private static String TAG = "HomeFragment";
+//    public static final String DATA = "Users";
+//    private DatabaseReference myDatabase;
+//    private StorageReference mStorageImage;
+//    private DatabaseReference mDatabase;
+//    private StorageReference mStorage;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
+
+
+
+
+
+
         View view = inflater.inflate(R.layout.home_fragment, container, false);
         profile_pic = (ImageView) view.findViewById(R.id.profile_pic);
         name = (TextView) view.findViewById(R.id.tv_name);
-        email = (TextView) view.findViewById(R.id.tv_email);
-        locale = (TextView) view.findViewById(R.id.tv_locale);
+//        email = (TextView) view.findViewById(R.id.tv_email);
+        locale = (TextView) view.findViewById(R.id.tv_id);
         logoutButton = (Button) view.findViewById(R.id.logout_button);
+        groups = (ListView) view.findViewById(R.id.list_groups);
         return view;
     }
 
@@ -52,21 +74,27 @@ public class HomeFragment extends Fragment {
 
 
 
+
         name.setText(profile.getName());
-        locale.setText(profile.getId());
+
+
+        locale.setText("ID: " + profile.getId());
 
         Picasso.with(getActivity())
-                .load(profile.getProfilePictureUri(300, 300).toString())
+                .load(profile.getProfilePictureUri(1200, 800).toString())
                 .into(profile_pic);
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 logout();
+                profile = null;
             }
         });
 
     }
+
+
 
     private void logout() {
         LoginManager.getInstance().logOut();

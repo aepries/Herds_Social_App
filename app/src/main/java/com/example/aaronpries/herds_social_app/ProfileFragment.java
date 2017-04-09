@@ -31,6 +31,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
 import com.facebook.CallbackManager;
@@ -40,6 +42,10 @@ import com.facebook.Profile;
 import com.facebook.ProfileTracker;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,6 +57,15 @@ public class ProfileFragment extends Fragment {
     private CallbackManager callbackManager = null;
     private AccessTokenTracker mtracker = null;
     private ProfileTracker mprofileTracker = null;
+    private Profile profile = null;
+
+    private DatabaseReference mFirebaseDatabaseReference;
+    private static String TAG = "HomeFragment";
+    public static final String DATA = "Users";
+    private DatabaseReference myDatabase;
+    private StorageReference mStorageImage;
+    private DatabaseReference mDatabase;
+    private StorageReference mStorage;
 
     public static final String PARCEL_KEY = "parcel_key";
 
@@ -60,8 +75,21 @@ public class ProfileFragment extends Fragment {
         @Override
         public void onSuccess(LoginResult loginResult) {
 
+            myDatabase = FirebaseDatabase.getInstance().getReference();
+
+//MAKE REFERENCE TO DATABASE STORAGE FOR IMAGES (FOLDER)
+        mStorage = FirebaseStorage.getInstance().getReference();
+        mStorageImage = FirebaseStorage.getInstance().getReference().child("UserImages");
+
+//MAKE REFERENCE TO DATABASE ROOT DIRECTORY
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+
+
+
             Profile profile = Profile.getCurrentProfile();
             homeFragment(profile);
+
+            startLogUser();
 
 
 
@@ -80,6 +108,27 @@ public class ProfileFragment extends Fragment {
 
         }
     };
+
+    private void startLogUser() {
+
+
+
+        profile = Profile.getCurrentProfile();
+
+            final String name = profile.getName().trim();
+            final String image = profile.getProfilePictureUri(500, 500).toString().trim();
+            final String id = profile.getId().trim();
+
+
+            ModelAddUser modelAdd = new ModelAddUser(name,image,id);
+            DatabaseReference newUser = mDatabase.push();
+            newUser.setValue(modelAdd);
+
+
+            Toast.makeText(getActivity(), "User Added", Toast.LENGTH_SHORT).show();
+
+        }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -169,6 +218,11 @@ public class ProfileFragment extends Fragment {
         return accessToken != null;
     }
 
+    public boolean isLoggedOut() {
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        return accessToken == null;
+    }
+
     @Override
     public void onResume() {
         super.onResume();
@@ -177,6 +231,9 @@ public class ProfileFragment extends Fragment {
             loginButton.setVisibility(View.INVISIBLE);
             Profile profile = Profile.getCurrentProfile();
             homeFragment(profile);
+        }
+        else if (isLoggedOut()){
+            loginButton.setVisibility(View.VISIBLE);
         }
 
     }
