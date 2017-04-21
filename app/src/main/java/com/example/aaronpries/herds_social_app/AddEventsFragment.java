@@ -179,23 +179,44 @@ public class AddEventsFragment extends Fragment {
 //             }
 //         });
 
+        //MAKING SURE ALL FIELDS ARE VALID
 
+        if(!TextUtils.isEmpty(title) &&
+                !TextUtils.isEmpty(title) &&
+                !TextUtils.isEmpty(desc) &&
+                !TextUtils.isEmpty(date) &&
+                !TextUtils.isEmpty(group) &&
+                !TextUtils.isEmpty(category) &&
+                !TextUtils.isEmpty(image) &&
+                !TextUtils.isEmpty(time) &&
+                !TextUtils.isEmpty(location)){
+
+
+            ModelAddEvent modelAdd = new ModelAddEvent(title,desc,category,date,image,time,location,group);
+            DatabaseReference newPost = mDatabase.push();
+            newPost.setValue(modelAdd);
+
+            Toast.makeText(getActivity(), "Event Created", Toast.LENGTH_SHORT).show();
+
+
+
+            EventsFragment fragment = new EventsFragment();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.frame,fragment);
+            fragmentTransaction.commit();
+
+        }
+
+        else{
+
+            Toast.makeText(getActivity(), "Oops, you forgot something!", Toast.LENGTH_SHORT).show();
+
+        }
 
 
                     //@SuppressWarnings("VisibleForTests") Uri downloadUrl = taskSnapshot.getDownloadUrl();
 
-                    ModelAddEvent modelAdd = new ModelAddEvent(title,desc,category,date,image,time,location,group);
-                    DatabaseReference newPost = mDatabase.push();
-                    newPost.setValue(modelAdd);
 
-                    Toast.makeText(getActivity(), "Event Created", Toast.LENGTH_SHORT).show();
-
-
-
-        EventsFragment fragment = new EventsFragment();
-        android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.frame,fragment);
-        fragmentTransaction.commit();
 
 //                   mProgress.dismiss();
 
