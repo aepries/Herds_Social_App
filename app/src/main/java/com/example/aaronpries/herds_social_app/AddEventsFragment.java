@@ -1,7 +1,9 @@
 package com.example.aaronpries.herds_social_app;
 
 
+import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,9 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import android.app.FragmentManager;
@@ -29,13 +33,15 @@ import com.google.firebase.storage.UploadTask;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 
+import java.util.Calendar;
+
 import static android.app.Activity.RESULT_OK;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AddEventsFragment extends Fragment {
+public class AddEventsFragment extends Fragment implements  View.OnClickListener{
 
 
 //    private ImageButton mSelectImage;
@@ -46,6 +52,11 @@ public class AddEventsFragment extends Fragment {
     private EditText mTime;
     private EditText mLocation;
     private EditText mURL;
+    private int mYear;
+    private int mDay;
+    private int mMonth;
+    private int mHour;
+    private int mMinute;
     private Uri mImageUri = null;
     private StorageReference mStorage;
     private DatabaseReference mDatabase;
@@ -100,6 +111,9 @@ public class AddEventsFragment extends Fragment {
         mTime = (EditText)v.findViewById(R.id.fieldTime);
         mLocation = (EditText)v.findViewById(R.id.fieldLocation);
 
+        mDate.setOnClickListener(this);
+        mTime.setOnClickListener(this);
+
 
 
 //PROGRESS BAR
@@ -116,6 +130,12 @@ public class AddEventsFragment extends Fragment {
                 android.R.layout.simple_dropdown_item_1line, mCategoryList);
         MaterialBetterSpinner textView2 = (MaterialBetterSpinner)v.findViewById(R.id.fieldCategory);
         textView2.setAdapter(adapter2);
+
+
+
+
+
+
 
 
 //
@@ -150,6 +170,56 @@ public class AddEventsFragment extends Fragment {
 
         return v;
     }
+
+    @Override
+    public void onClick(View v) {
+
+        if (v == mDate) {
+
+            // Get Current Date
+            final Calendar c = Calendar.getInstance();
+            mYear = c.get(Calendar.YEAR);
+            mMonth = c.get(Calendar.MONTH);
+            mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(),
+                    new DatePickerDialog.OnDateSetListener() {
+
+                        @Override
+                        public void onDateSet(DatePicker view, int year,
+                                              int monthOfYear, int dayOfMonth) {
+
+                            mDate.setText((monthOfYear + 1) + "/" + (dayOfMonth) + "/" + year % 100);
+
+                        }
+                    }, mYear, mMonth, mDay);
+            datePickerDialog.show();
+        }
+
+        if (v == mTime) {
+
+            // Get Current Time
+            final Calendar c = Calendar.getInstance();
+            mHour = c.get(Calendar.HOUR_OF_DAY);
+            mMinute = c.get(Calendar.MINUTE);
+
+            // Launch Time Picker Dialog
+            TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),
+                    new TimePickerDialog.OnTimeSetListener() {
+
+                        @Override
+                        public void onTimeSet(TimePicker view, int hourOfDay,
+                                              int minute) {
+
+                            mTime.setText(hourOfDay + ":" + minute);
+                        }
+                    }, mHour, mMinute, false);
+            timePickerDialog.show();
+        }
+
+    }
+
 
     private void startEventPost() {
 

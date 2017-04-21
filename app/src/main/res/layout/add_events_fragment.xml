@@ -79,13 +79,13 @@
 
         <!--EVENT DATE-->
         <EditText
+            android:focusable="false"
             android:id="@+id/fieldEventDate"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="03/14/17"
             android:inputType="date"
-            android:maxLength="8"
             android:textStyle="bold"
             android:layout_alignBaseline="@+id/fieldTime"
             android:layout_alignBottom="@+id/fieldTime"
@@ -95,6 +95,7 @@
 
         <!--EVENT TIME-->
         <EditText
+            android:focusable="false"
             android:id="@+id/fieldTime"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
@@ -104,7 +105,6 @@
             android:ems="10"
             android:hint="6:00pm"
             android:inputType="time"
-            android:maxLength="8"
             android:textStyle="bold" />
 
         <!--SUBMIT BUTTON-->
