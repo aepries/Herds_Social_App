@@ -1,0 +1,98 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.aaronpries.herds_social_app.AddGroupFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--DESCRIPTION-->
+        <TextView
+            android:id="@+id/Header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="11dp"
+            android:text="Add A Local Group"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+
+        <!--IMAGE-->
+        <EditText
+            android:id="@+id/fieldGroupURL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/fieldGroupName"
+            android:layout_below="@+id/Header"
+            android:layout_marginTop="11dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:ems="10"
+            android:hint="Image URL"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:scaleType="centerCrop"
+            android:textStyle="bold"
+            app:srcCompat="@drawable/add_btn" />
+
+        <!--GROUP NAME-->
+        <EditText
+            android:id="@+id/fieldGroupName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:ems="10"
+            android:hint="Group Name"
+            android:inputType="textPersonName"
+            android:paddingTop="10dp"
+            android:textStyle="bold"
+            android:layout_below="@+id/fieldGroupURL"
+            android:layout_centerHorizontal="true" />
+
+        <!--GROUP BIO-->
+        <EditText
+            android:id="@+id/fieldGroupBio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:ems="10"
+            android:hint="Description"
+            android:inputType="textPersonName"
+            android:maxLines="3"
+            android:textStyle="bold"
+            android:layout_centerVertical="true" />
+
+
+
+        <!--SUBMIT BUTTON-->
+        <Button
+            android:id="@+id/btnAddGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:background="@color/colorPrimary"
+            android:text="Add Group"
+            android:textColor="#FFFFFF" />
+
+
+
+    </RelativeLayout>
+
+
+</FrameLayout>

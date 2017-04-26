@@ -237,9 +237,17 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_add) {
             AddEventsFragment fragment = new AddEventsFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.frame,fragment);
+            fragmentTransaction.replace(R.id.frame, fragment);
             fragmentTransaction.addToBackStack("");
             fragmentTransaction.commit();
+        }
+
+            if (id == R.id.action_addGroup) {
+                AddGroupFragment fragmentGroup = new AddGroupFragment();
+                android.support.v4.app.FragmentTransaction fragmentTransactionGroup = getSupportFragmentManager().beginTransaction();
+                fragmentTransactionGroup.replace(R.id.frame, fragmentGroup);
+                fragmentTransactionGroup.addToBackStack("");
+                fragmentTransactionGroup.commit();
         }
 
         return super.onOptionsItemSelected(item);

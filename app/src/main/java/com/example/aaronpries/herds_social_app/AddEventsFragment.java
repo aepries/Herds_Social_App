@@ -133,11 +133,6 @@ public class AddEventsFragment extends Fragment implements  View.OnClickListener
 
 
 
-
-
-
-
-
 //
 ////CLICK LISTENER FOR IMAGE SELECTION
 //        mSelectImage.setOnClickListener(new View.OnClickListener() {
@@ -158,6 +153,7 @@ public class AddEventsFragment extends Fragment implements  View.OnClickListener
 //        });
 
 //CLICK LISTENER FOR SUBMIT BUTTON
+
         mSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -291,8 +287,6 @@ public class AddEventsFragment extends Fragment implements  View.OnClickListener
 //                   mProgress.dismiss();
 
         }
-
-
 
 
 
