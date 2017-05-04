@@ -23,36 +23,13 @@
             android:textSize="25dp" />
 
         <EditText
-            android:id="@+id/xage"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/xname"
-            android:layout_below="@+id/xname"
-            android:layout_marginTop="25dp"
-            android:hint="Age"
-            android:textSize="25dp" />
-
-        <EditText
-            android:id="@+id/xgroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignStart="@+id/xage"
-            android:layout_below="@+id/xage"
-            android:layout_marginEnd="15dp"
-            android:layout_marginTop="18dp"
-            android:hint="Group"
-            android:textSize="25dp" />
-
-        <EditText
             android:id="@+id/xbio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/ximage"
-            android:layout_alignStart="@+id/xgroup"
-            android:layout_below="@+id/ximage"
             android:layout_marginTop="22dp"
             android:hint="About You"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:layout_below="@+id/xname"/>
 
         <EditText
             android:id="@+id/ximage"
@@ -60,10 +37,8 @@
             android:layout_height="wrap_content"
             android:hint="Image URL"
             android:textSize="25dp"
-            android:layout_below="@+id/xgroup"
-            android:layout_alignStart="@+id/xgroup"
+            android:layout_below="@id/xbio"
             android:layout_marginTop="12dp"
-            android:layout_alignEnd="@+id/xgroup"
             android:maxLines="1"
             />
 

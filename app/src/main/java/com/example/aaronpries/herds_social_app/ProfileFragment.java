@@ -205,7 +205,11 @@ public class ProfileFragment extends Fragment {
 
     private void startSignUp() {
 
-        Toast.makeText(getActivity(), "IT WORKED", Toast.LENGTH_SHORT).show();
+        EditProfileFragment fragmentEdit = new EditProfileFragment();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frame,fragmentEdit);
+        fragmentTransaction.addToBackStack("");
+        fragmentTransaction.commit();
 
     }
 

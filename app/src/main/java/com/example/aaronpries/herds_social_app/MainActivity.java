@@ -81,7 +81,15 @@ public class MainActivity extends AppCompatActivity {
 
         AppEventsLogger.activateApp(getApplication());
 
-        
+        Intent intent = getIntent();
+        String Lname = intent.getStringExtra("Lname");
+
+        Bundle bundle=new Bundle();
+        bundle.putString("Lname", "From Activity");
+        //set Fragmentclass Arguments
+        LoggedInFragment fragobj=new LoggedInFragment();
+        fragobj.setArguments(bundle);
+
 
 
         try {

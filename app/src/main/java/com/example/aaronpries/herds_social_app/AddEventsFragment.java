@@ -154,14 +154,7 @@ public class AddEventsFragment extends Fragment implements  View.OnClickListener
 
 //CLICK LISTENER FOR SUBMIT BUTTON
 
-        mSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                startEventPost();
-
-            }
-        });
 
 
         return v;

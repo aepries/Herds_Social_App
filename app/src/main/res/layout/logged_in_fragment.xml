@@ -1,0 +1,63 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.aaronpries.herds_social_app.LoggedInFragment">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/logImage"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:maxHeight="300dp"
+            android:maxWidth="300dp" />
+
+        <TextView
+            android:id="@+id/logName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/logImage"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Name"
+            android:textSize="25dp" />
+
+        <TextView
+            android:id="@+id/logBio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/logName"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Bio"
+            android:textSize="25dp" />
+
+        <Button
+            android:id="@+id/logoutbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log Out"
+            android:layout_below="@+id/logBio"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp" />
+
+        <Button
+            android:id="@+id/editbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Profile"
+            android:layout_marginTop="17dp"
+            android:layout_below="@+id/logoutbtn"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+
+</FrameLayout>
