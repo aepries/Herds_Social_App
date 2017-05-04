@@ -31,6 +31,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -70,6 +71,7 @@ public class ProfileFragment extends Fragment {
     public static final String PARCEL_KEY = "parcel_key";
 
     private LoginButton loginButton;
+    private Button RegLoginButton;
 
     FacebookCallback<LoginResult> callback = new FacebookCallback<LoginResult>() {
         @Override
@@ -83,6 +85,7 @@ public class ProfileFragment extends Fragment {
 
 //MAKE REFERENCE TO DATABASE ROOT DIRECTORY
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
+
 
 
 
@@ -178,16 +181,42 @@ public class ProfileFragment extends Fragment {
     }
 
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.profile_fragment, container, false);
+        final View v =  inflater.inflate(R.layout.profile_fragment, container, false);
+
+        RegLoginButton = (Button) v.findViewById(R.id.mLogin_button);
+
+        RegLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startSignUp();
+
+            }
+
+
+        });
+
+        return v;
     }
+
+    private void startSignUp() {
+
+        Toast.makeText(getActivity(), "IT WORKED", Toast.LENGTH_SHORT).show();
+
+    }
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         loginButton = (LoginButton) view.findViewById(R.id.login_button);
+
+
 
         loginButton.setReadPermissions(Arrays.asList(
                 "public_profile", "email", "user_birthday", "user_friends"));
@@ -229,12 +258,16 @@ public class ProfileFragment extends Fragment {
 
         if (isLoggedIn()) {
             loginButton.setVisibility(View.INVISIBLE);
+
             Profile profile = Profile.getCurrentProfile();
             homeFragment(profile);
         }
+
+
         else if (isLoggedOut()){
             loginButton.setVisibility(View.VISIBLE);
         }
 
     }
+
 }

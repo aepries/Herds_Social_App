@@ -55,7 +55,7 @@ public class HomeFragment extends Fragment {
 //        email = (TextView) view.findViewById(R.id.tv_email);
         locale = (TextView) view.findViewById(R.id.tv_id);
         logoutButton = (Button) view.findViewById(R.id.logout_button);
-        groups = (ListView) view.findViewById(R.id.list_groups);
+//        groups = (ListView) view.findViewById(R.id.list_groups);
         return view;
     }
 

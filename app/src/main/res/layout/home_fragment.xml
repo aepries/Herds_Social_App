@@ -82,11 +82,4 @@
         android:textColor="#FFFF"
         android:text="Log out" />
 
-    <ListView
-        android:id="@+id/list_groups"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/tv_groups" />
-
 </RelativeLayout>

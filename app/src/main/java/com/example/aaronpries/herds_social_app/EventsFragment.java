@@ -27,6 +27,7 @@ import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Map;
 
 import static com.example.aaronpries.herds_social_app.R.id.category;
@@ -36,6 +37,10 @@ import static com.example.aaronpries.herds_social_app.R.id.category;
  */
 public class EventsFragment extends Fragment {
     public String postKey;
+    private int mYear;
+    private int mDay;
+    private int mMonth;
+
 
 
     public static class EventViewHolder extends RecyclerView.ViewHolder{
@@ -110,6 +115,11 @@ public class EventsFragment extends Fragment {
         final View v = inflater.inflate(R.layout.events_fragment,container,false);
         v.setTag(TAG);
 
+
+
+
+
+
 //RecyclerView
         mEventRecyclerView = (RecyclerView)v.findViewById(R.id.events_list);
 
@@ -128,11 +138,16 @@ public class EventsFragment extends Fragment {
                 R.layout.design_row,
                 EventViewHolder.class,
                 mFirebaseDatabaseReference.child(DATA))
+
+
+
+
         {
             @Override
             protected void populateViewHolder(EventViewHolder viewHolder, ModelClass model, final int position) {
 
                 final String post_key = getRef(position).getKey();
+
 
 
 
@@ -204,6 +219,8 @@ public class EventsFragment extends Fragment {
                                 post_group = snapshot.child("group").getValue().toString();
                                 post_location = snapshot.child("location").getValue().toString();
 
+
+
                                 Bundle bundle = new Bundle();
                                 bundle.putString("info", post_info);
                                 bundle.putString("title", post_title);
@@ -242,6 +259,33 @@ public class EventsFragment extends Fragment {
 
         mEventRecyclerView.setLayoutManager(mLinearLayoutManager);
         mEventRecyclerView.setAdapter(mFirebaseAdapter);
+
+//        final Calendar c = Calendar.getInstance();
+//
+//        mYear = c.get(Calendar.YEAR);
+//        mMonth = c.get(Calendar.MONTH);
+//        mDay = c.get(Calendar.DAY_OF_MONTH);
+//
+//        Toast.makeText(getActivity(), mMonth + "/" + (mDay) + "/" + (mYear % 100), Toast.LENGTH_SHORT).show();
+
+//        mFirebaseDatabaseReference.child("DATA").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        })
+
+
+
+
+
+
+
 
         return v;
     }

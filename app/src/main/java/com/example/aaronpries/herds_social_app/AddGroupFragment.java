@@ -96,6 +96,8 @@ public class AddGroupFragment extends Fragment {
 
 
 
+//        final Calendar c = Calendar.getInstance();
+//        System.out.println("----------------------------------" + c.toString() + "-------------------------------------");
 
 
 

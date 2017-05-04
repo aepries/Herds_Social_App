@@ -13,4 +13,14 @@
         android:layout_marginBottom="30dp"
         android:layout_marginTop="30dp" />
 
+    <Button
+        android:id="@+id/mLogin_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign up with email"
+        android:layout_alignEnd="@+id/login_button"
+        android:layout_alignStart="@+id/login_button"
+        android:layout_below="@+id/login_button" />
+
+
 </RelativeLayout>
